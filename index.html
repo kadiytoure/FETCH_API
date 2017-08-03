@@ -31,7 +31,11 @@
         let button = document.querySelector("#submit-article");
         button.addEventListener("click", function(e) {
             e.preventDefault();
-            console.log(button);
+            let title = document.querySelector("#idtext").value;
+            let content = document.querySelector("#descriptif").value;
+            letfetch("new-article.php", {
+                method: "POST",
+            })
             let form = document.querySelector("#form-article");
             fetch("new-article.php", {
                 method: "POST",
@@ -43,6 +47,30 @@
             }).catch(function(error) {
                 console.error(error);
             })
+            fetch('http://urlhttp://192.168.1.152:8080/', {
+
+                method: 'post',
+
+                headers: {
+
+                    'Content-Type': 'application/json'
+
+                },
+
+                body: JSON.stringify({
+                    title: "bla",
+                    content: "bla"
+                }).then(function(response) {
+                    return response.text();
+                }).then(function(text) {
+                    console.log(text);
+                }).catch(function(error) {
+                    console.error(error);
+                    http_response_code(400);
+                })
+
+            })
+
         });
     </script>
 </body>
